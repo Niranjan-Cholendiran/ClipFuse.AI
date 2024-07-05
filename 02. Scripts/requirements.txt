@@ -1,0 +1,5 @@
+requests
+python-dotenv
+pyht==0.0.28
+moviepy==1.0.3
+pillow==9.4.0
