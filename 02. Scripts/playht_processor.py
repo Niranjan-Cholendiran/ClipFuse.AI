@@ -47,13 +47,13 @@ def text_to_audio (playth_authorization, playht_userid, story_text, voice_id= "s
         "voice": voice_id,
         "output_format": "mp3",
         "voice_engine": "PlayHT2.0",
-        "speed": 0.9,
-        "quality": "medium",
-        "voice_guidance": 6, # Important Metric: Determines how close the generated voice should match the custom voice.
+        #"speed": 0.8,
+        #"quality": "medium",
+        #"voice_guidance": 6, # Important Metric: Determines how close the generated voice should match the custom voice.
         #"seed": 7,
-        "temperature": 0.2,
-        "emotion": "male_happy", # Could also be "female_happy", but the gender doesn't impact the speech much.
-        "style_guidance": 5 # Important Metric: Determines how strong the chosen emotion will be. Keep it between 0-10, number more than that is too strong for a vlog video.
+        #"temperature": 0.2,
+        #"emotion": "male_happy", # Could also be "female_happy", but the gender doesn't impact the speech much.
+        #"style_guidance": 5 # Important Metric: Determines how strong the chosen emotion will be. Keep it between 0-10, number more than that is too strong for a vlog video.
     }
 
     headers = {
