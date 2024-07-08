@@ -63,14 +63,14 @@ sudo apt install ffmpeg
 
 ### Step 4: Setup Environment Variables:
 
-Create a `.env` file in the root directory and add the following secret codes:
+Create a `.env` file in the root directory and add the following APDI keys:
 
 ```plaintext
 PLAYHT_USER_ID= <your_playht_userid>
 PLAYHT_SECRET_KEY= <your_playht_secretkey>
 OPENAI_API_KEY= <your_openapi_key>
 ```
-You can generate your PlayHT key [here](https://play.ht/studio/api-access).
+Generate your free PlayHT keys [here](https://play.ht/studio/api-access) and OpenAI API key [here](https://openai.com/index/openai-api/). You can use a paid version of the APIs for faster processing, but the free versions work reasonably well.
 
 ## Running the project
 
