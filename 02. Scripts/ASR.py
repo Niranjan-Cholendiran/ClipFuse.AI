@@ -14,9 +14,11 @@ def audio_format_converter(audio_ip_path, audio_op_path, format="wav"):
 def ASR_audio_description(audio_file_path):
     """Takes the audio file path (make sure the audio is in WAV format for seemless transcription) and returns the transcript text"""
     recognizer = sr.Recognizer()
+    print("recognizer ready")
 
     # Open the audio file and recognize speech using Google Web Speech API
     with sr.AudioFile(audio_file_path) as source:
+        print("Audio Read")
         audio_data = recognizer.record(source)
         try:
             text = recognizer.recognize_google(audio_data)  

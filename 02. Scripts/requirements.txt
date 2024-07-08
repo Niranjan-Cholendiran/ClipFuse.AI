@@ -7,3 +7,4 @@ ffmpeg==1.4
 SpeechRecognition==3.10.4
 pydub==0.25.1
 langchain-openai==0.1.14
+flask==2.2.2

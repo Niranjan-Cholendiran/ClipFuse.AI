@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }} - Generating Video</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var lastMessage = "";  // Track the last displayed message
+            var interval = setInterval(function() {
+                $.getJSON('/progress', function(data) {
+                    // Only update if there's a new message
+                    if (data.message !== lastMessage) {
+                        $('#progress').append('<p>' + data.message + '</p>');  // Append new message
+                        lastMessage = data.message;
+                    }
+                    if (data.completed) {
+                        clearInterval(interval);
+                        window.location.href = '/result/{{ title }}';
+                    }
+                });
+            }, 1000); // Polling interval in milliseconds
+        });
+    </script>
+</head>
+<body>
+    <h1>Generating Video...</h1>
+    <div id="progress">
+        <!-- Messages will be dynamically added here -->
+    </div>
+</body>
+</html>

@@ -45,6 +45,7 @@ def story_text_generator (media_information):
     reply= llm.invoke(input_prompt).content
     story_dict= json.loads(reply)
     print("Vlog Story Created")
+    print(story_dict)
     return story_dict
 
 

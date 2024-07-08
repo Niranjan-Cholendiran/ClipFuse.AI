@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }} - Record Descriptions</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .media-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .media-item {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        img, video {
+            display: block;
+            margin: 0 auto 10px auto;
+            max-width: 150px;
+            max-height: 150px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+        button:hover {
+            background-color: #e64a19;
+        }
+        audio {
+            display: block;
+            margin: 10px auto;
+        }
+        .generate-button {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioChunks = [];
+            let recorder, audioBlob;
+            const recordButtons = document.querySelectorAll('.record-btn');
+            const stopButtons = document.querySelectorAll('.stop-btn');
+            const playButtons = document.querySelectorAll('.play-btn');
+            const saveButtons = document.querySelectorAll('.save-btn');
+
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    recorder = new MediaRecorder(stream);
+                    recorder.ondataavailable = e => audioChunks.push(e.data);
+                });
+
+            recordButtons.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    audioChunks.length = 0;
+                    recorder.start();
+                    btn.disabled = true;
+                    stopButtons[index].disabled = false;
+                });
+            });
+
+            stopButtons.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    recorder.stop();
+                    btn.disabled = true;
+                    recordButtons[index].disabled = false;
+                    playButtons[index].disabled = false;
+                    saveButtons[index].disabled = false;
+                    recorder.onstop = () => {
+                        audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        playButtons[index].src = audioUrl;
+                    };
+                });
+            });
+
+            saveButtons.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    const formData = new FormData();
+                    formData.append('audio_data', audioBlob, `description_${index + 1}.webm`);
+                    fetch(`/save_audio/${index + 1}`, {
+                        method: 'POST',
+                        body: formData
+                    }).then(response => {
+                        if (response.ok) {
+                            alert('Audio saved successfully!');
+                            btn.disabled = true;
+                        } else {
+                            alert('Error saving audio.');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Record Descriptions for {{ title }}</h1>
+        <form method="post">
+            <div class="media-items">
+                {% for i, file in enumerate(image_files) %}
+                <div class="media-item">
+                    {% if file.endswith(('.png', '.jpg', '.jpeg', '.gif')) %}
+                    <img src="{{ url_for('static', filename='uploads/images/' ~ file) }}" alt="Media">
+                    {% elif file.endswith(('.mp4', '.mov', '.avi')) %}
+                    <video src="{{ url_for('static', filename='uploads/images/' ~ file) }}" controls></video>
+                    {% endif %}
+                    <button type="button" class="record-btn">Record</button>
+                    <button type="button" class="stop-btn" disabled>Stop</button>
+                    <audio controls class="play-btn" disabled></audio>
+                    <button type="button" class="save-btn" disabled>Save</button>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="generate-button">Generate Video</button>
+        </form>
+    </div>
+</body>
+</html>

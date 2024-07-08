@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }} - Reorder Files</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        #file-list {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            padding: 0;
+        }
+        #file-list li {
+            margin: 0 10px;
+            text-align: center;
+        }
+        img, video {
+            display: block;
+            margin: 0 auto 10px auto;
+            max-width: 150px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reorder the files in the sequence they should appear in the video.</h1>
+        <form method="post">
+            <ul id="file-list">
+                {% for file in image_files %}
+                <li>
+                    {% if file.lower().endswith(('png', 'jpg', 'jpeg', 'gif')) %}
+                    <img src="{{ url_for('static', filename='uploads/images/' ~ file) }}" alt="Image">
+                    {% elif file.lower().endswith(('mp4', 'mov', 'avi')) %}
+                    <video src="{{ url_for('static', filename='uploads/images/' ~ file) }}" controls></video>
+                    {% endif %}
+                    <label for="order_{{ loop.index }}">Order:</label>
+                    <input type="number" id="order_{{ loop.index }}" name="order_{{ file }}" min="1" max="{{ image_files|length }}" required>
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>

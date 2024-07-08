@@ -65,6 +65,8 @@ def text_to_audio (playth_authorization, playht_userid, story_text, voice_id= "s
 
     # Generate and download custom voiceover 
     print("Generating Voiceover...")
+    print(headers)
+    print(payload)
     response = requests.post(url, json=payload, headers=headers)
 
     #print(response.text)
