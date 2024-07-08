@@ -6,6 +6,9 @@ Isn't this disparity unfair? Not anymore. **ClipFuse.AI** addresses these challe
 
 This innovation aims to democratize video creation, enabling everyone to share their beautiful moments seamlessly, thereby breaking down traditional barriers to digital storytelling.
 
+Find out more:
+* [YouTube Introduction](https://youtu.be/vMr8ML_7gsw?si=pQf2pmzZx2Y0g_1q)
+
 ## Prerequisites
 
 - Python 3.7 or higher
