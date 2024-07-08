@@ -61,16 +61,26 @@ sudo apt update
 sudo apt install ffmpeg
 ```
 
-### Step 4: Setup Environment Variables:
+### Step 4: Download ImageMagick
 
-Create a `.env` file in the root directory and add the following secret codes:
+Download ImageMagick from the official website: [ImageMagick Download Page](https://imagemagick.org/script/download.php)
+
+### Step 5: Setup Environment Variables:
+
+Create a `.env` file in the root directory and add the following keys:
 
 ```plaintext
 PLAYHT_USER_ID= <your_playht_userid>
 PLAYHT_SECRET_KEY= <your_playht_secretkey>
 OPENAI_API_KEY= <your_openapi_key>
+IMAGEMAGICK_PATH= <your_imagemagic_path>
 ```
-You can generate your PlayHT key [here](https://play.ht/studio/api-access).
+Generate your free PlayHT keys [here](https://play.ht/studio/api-access) and OpenAI API key [here](https://openai.com/index/openai-api/). You can use a paid version of the APIs for faster processing, but the free versions work reasonably well.
+
+Find the ImageMagick's executable location using the following terminal command. In most cases, it will be `C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\magick.exe` for Windows OS.
+```bash
+which magick
+```
 
 ## Running the project
 
