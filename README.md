@@ -9,6 +9,9 @@ This innovation aims to democratize video creation, enabling everyone to share t
 Find out more:
 * [YouTube Introduction](https://youtu.be/vMr8ML_7gsw?si=pQf2pmzZx2Y0g_1q)
 
+  ![Architecture](https://github.com/Niranjan-Cholendiran/ClipFuse.AI/assets/78549555/2e2776b8-6d4a-4a76-b6d6-ca3c3b039ed9)
+
+
 ## Prerequisites
 
 - Python 3.7 or higher
