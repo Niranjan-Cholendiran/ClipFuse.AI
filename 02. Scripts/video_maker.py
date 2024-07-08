@@ -72,18 +72,13 @@ def video_maker(media_information, progress_queue):
     media_information['STARTER']["combined_description_audio_loc"]= output_location
 
     # Create custom voice with the concatenated description audio
-    """
+    
     file_path= media_information['STARTER']["combined_description_audio_loc"]
     voice_name= "custom_voice"
     playth_authorization= os.environ['PLAYHT_SECRET_KEY']
     playht_userid= os.environ['PLAYHT_USER_ID']
     custom_voice_info= custom_voice_creation (file_path= file_path, playth_authorization= playth_authorization, playht_userid= playht_userid, voice_name= voice_name)
-    voice_id= custom_voice_info['id']
-    """
-    playth_authorization= os.environ['PLAYHT_SECRET_KEY']
-    playht_userid= os.environ['PLAYHT_USER_ID']
-    voice_id= "s3://voice-cloning-zero-shot/efc76063-61f4-485d-9ed8-fabf07f1b7c5/original/manifest.json"
-    
+    voice_id= custom_voice_info['id']    
     logger.info("Custom Voice Created!")
     progress_queue.put("Custom Voice Created!")
 
