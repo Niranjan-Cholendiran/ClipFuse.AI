@@ -7,6 +7,7 @@ Isn't this disparity unfair? Not anymore. **ClipFuse.AI** addresses these challe
 This innovation aims to democratize video creation, enabling everyone to share their beautiful moments seamlessly, thereby breaking down traditional barriers to digital storytelling.
 
 Find out more:
+* [Devpost](https://devpost.com/software/project-name-bkawpr)
 * [YouTube Introduction](https://youtu.be/vMr8ML_7gsw?si=pQf2pmzZx2Y0g_1q)
 
   ![Architecture](https://github.com/Niranjan-Cholendiran/ClipFuse.AI/assets/78549555/2e2776b8-6d4a-4a76-b6d6-ca3c3b039ed9)
